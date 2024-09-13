@@ -11,7 +11,9 @@ import SwiftUI
 struct fetch_ios_challengeApp: App {
     var body: some Scene {
         WindowGroup {
-            RecipesView()
+            NavigationStack {
+                RecipesView()
+            }
         }
     }
 }

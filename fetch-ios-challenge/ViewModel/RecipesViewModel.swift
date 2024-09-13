@@ -17,7 +17,8 @@ class RecipesViewModel {
         Task {
             do {
                 let meals = try await self.networkService.fetchMeals()
-                self.dessertMeals = meals
+                let sortedMeals = meals.sorted { $0.name.lowercased() < $1.name.lowercased() }
+                self.dessertMeals = sortedMeals
             } catch {
                 self.networkError = error
             }

@@ -12,25 +12,48 @@ struct RecipesView: View {
     
     var body: some View {
         VStack {
-            Button("Fetch Recipes") {
-                self.fetchRecipesButtonPressed()
-            }
-            .padding()
-            .background(Color.blue)
-            .foregroundStyle(.white)
-            .clipShape(Capsule())
-            
             if self.recipesVM.networkError != nil {
                 Text("There was an error fetching Recipes! Please try again!")
             } else {
-                List {
-                    ForEach(self.recipesVM.dessertMeals, id: \.self) { meal in
-                        Text(meal.strMeal)
-                    }
-                }
+                MealsListView(meals: self.recipesVM.dessertMeals)
             }
             
             Spacer()
+        }
+        .navigationTitle("Recipes")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button("Fetch Recipes") {
+                    self.fetchRecipesButtonPressed()
+                }
+            }
+        }
+    }
+    
+    private struct MealsListView: View {
+        let meals: [Meal]
+        
+        var body: some View {
+            List {
+                ForEach(self.meals) { meal in
+                    HStack {
+                        AsyncImage(url: URL(string: meal.thumbnailURL)) { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 50, height: 50)
+                                .cornerRadius(8)
+                        } placeholder: {
+                            ProgressView()
+                                .frame(width: 50, height: 50)
+                        }
+                        
+                        Text(meal.name)
+                            .font(.headline)
+                    }
+                }
+            }
         }
     }
     

@@ -7,8 +7,14 @@
 
 import Foundation
 
-struct Meal: Codable, Hashable {
-    let strMeal: String
-    let strMealThumb: String
-    let idMeal: String
+struct Meal: Codable, Identifiable {
+    let name: String
+    let thumbnailURL: String
+    let id: String
+    
+    enum CodingKeys: String, CodingKey {
+        case name = "strMeal"
+        case thumbnailURL = "strMealThumb"
+        case id = "idMeal"
+    }
 }
