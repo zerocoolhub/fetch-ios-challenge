@@ -10,15 +10,15 @@ import Foundation
 @Observable
 class RecipesViewModel {
     let networkService = NetworkService()
-    var dessertMeals: [Meal] = []
+    var dessertRecipes: [Recipe] = []
     var networkError: Error?
     
     func fetchMeals() {
         Task {
             do {
-                let meals = try await self.networkService.fetchMeals()
-                let sortedMeals = meals.sorted { $0.name.lowercased() < $1.name.lowercased() }
-                self.dessertMeals = sortedMeals
+                let meals = try await self.networkService.fetchRecipes()
+                let sortedRecipes = meals.sorted { $0.name.lowercased() < $1.name.lowercased() }
+                self.dessertRecipes = sortedRecipes
             } catch {
                 self.networkError = error
             }

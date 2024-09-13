@@ -15,7 +15,7 @@ struct RecipesView: View {
             if self.recipesVM.networkError != nil {
                 Text("There was an error fetching Recipes! Please try again!")
             } else {
-                MealsListView(meals: self.recipesVM.dessertMeals)
+                RecipesListView(meals: self.recipesVM.dessertRecipes)
             }
             
             Spacer()
@@ -31,26 +31,28 @@ struct RecipesView: View {
         }
     }
     
-    private struct MealsListView: View {
-        let meals: [Meal]
+    private struct RecipesListView: View {
+        let meals: [Recipe]
         
         var body: some View {
             List {
                 ForEach(self.meals) { meal in
-                    HStack {
-                        AsyncImage(url: URL(string: meal.thumbnailURL)) { image in
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 50, height: 50)
-                                .cornerRadius(8)
-                        } placeholder: {
-                            ProgressView()
-                                .frame(width: 50, height: 50)
+                    NavigationLink(destination: RecipeView()) {
+                        HStack {
+                            AsyncImage(url: URL(string: meal.thumbnailURL)) { image in
+                                image
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 50, height: 50)
+                                    .cornerRadius(8)
+                            } placeholder: {
+                                ProgressView()
+                                    .frame(width: 50, height: 50)
+                            }
+                            
+                            Text(meal.name)
+                                .font(.headline)
                         }
-                        
-                        Text(meal.name)
-                            .font(.headline)
                     }
                 }
             }

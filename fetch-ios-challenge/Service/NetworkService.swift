@@ -8,9 +8,10 @@
 import Foundation
 
 private let DESSERT_MEALS_URL = "https://themealdb.com/api/json/v1/1/filter.php?c=Dessert"
+private let MEAL_URL = "https://themealdb.com/api/json/v1/1/lookup.php?i="
 
-private struct MealResponse: Codable {
-    let meals: [Meal]
+private struct RecipesResponse: Codable {
+    let meals: [Recipe]
 }
 
 enum NetworkError: Error {
@@ -19,7 +20,7 @@ enum NetworkError: Error {
 }
 
 class NetworkService {
-    func fetchMeals() async throws -> [Meal] {
+    func fetchRecipes() async throws -> [Recipe] {
         guard let url = URL(string: DESSERT_MEALS_URL) else {
             // You would log this error to logging service
             throw NetworkError.invalidURL
@@ -29,7 +30,7 @@ class NetworkService {
         
         do {
             let decoder = JSONDecoder()
-            let mealResponse = try decoder.decode(MealResponse.self, from: data)
+            let mealResponse = try decoder.decode(RecipesResponse.self, from: data)
             return mealResponse.meals
         } catch {
             // You would log this error to logging service
