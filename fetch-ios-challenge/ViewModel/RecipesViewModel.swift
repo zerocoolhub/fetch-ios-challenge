@@ -10,7 +10,7 @@ import Foundation
 @Observable
 class RecipesViewModel {
     let networkService = NetworkService()
-    var dessertRecipes: [Recipe] = []
+    var dessertRecipes: [ShortRecipe] = []
     var networkError: Error?
     
     func fetchMeals() {
@@ -19,6 +19,7 @@ class RecipesViewModel {
                 let meals = try await self.networkService.fetchRecipes()
                 let sortedRecipes = meals.sorted { $0.name.lowercased() < $1.name.lowercased() }
                 self.dessertRecipes = sortedRecipes
+                self.networkError = nil
             } catch {
                 self.networkError = error
             }

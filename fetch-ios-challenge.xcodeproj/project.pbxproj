@@ -10,11 +10,13 @@
 		D74CC7C92C92C0BC0059FE5D /* RecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74CC7C82C92C0BC0059FE5D /* RecipesView.swift */; };
 		D74CC7CD2C92C1FE0059FE5D /* RecipesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74CC7CC2C92C1FE0059FE5D /* RecipesViewModel.swift */; };
 		D74CC7D02C92D1EF0059FE5D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74CC7CF2C92D1EF0059FE5D /* NetworkService.swift */; };
-		D74CC7D22C92D2100059FE5D /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74CC7D12C92D2100059FE5D /* Recipe.swift */; };
+		D74CC7D22C92D2100059FE5D /* ShortRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74CC7D12C92D2100059FE5D /* ShortRecipe.swift */; };
 		D7B4232A2C925EC800E3107E /* fetch_ios_challengeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B423292C925EC800E3107E /* fetch_ios_challengeApp.swift */; };
 		D7B4232E2C925ECC00E3107E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7B4232D2C925ECC00E3107E /* Assets.xcassets */; };
 		D7B423312C925ECC00E3107E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7B423302C925ECC00E3107E /* Preview Assets.xcassets */; };
 		D7B511BE2C93D84900FD3D6E /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B511BD2C93D84900FD3D6E /* RecipeView.swift */; };
+		D7B511C02C94358900FD3D6E /* FullRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B511BF2C94358900FD3D6E /* FullRecipe.swift */; };
+		D7B511C22C94419500FD3D6E /* RecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B511C12C94419500FD3D6E /* RecipeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +40,7 @@
 		D74CC7C82C92C0BC0059FE5D /* RecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesView.swift; sourceTree = "<group>"; };
 		D74CC7CC2C92C1FE0059FE5D /* RecipesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesViewModel.swift; sourceTree = "<group>"; };
 		D74CC7CF2C92D1EF0059FE5D /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		D74CC7D12C92D2100059FE5D /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		D74CC7D12C92D2100059FE5D /* ShortRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortRecipe.swift; sourceTree = "<group>"; };
 		D7B423262C925EC700E3107E /* fetch-ios-challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fetch-ios-challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7B423292C925EC800E3107E /* fetch_ios_challengeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fetch_ios_challengeApp.swift; sourceTree = "<group>"; };
 		D7B4232D2C925ECC00E3107E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -46,6 +48,8 @@
 		D7B423362C925ECC00E3107E /* fetch-ios-challengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fetch-ios-challengeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7B423402C925ECC00E3107E /* fetch-ios-challengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fetch-ios-challengeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7B511BD2C93D84900FD3D6E /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
+		D7B511BF2C94358900FD3D6E /* FullRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullRecipe.swift; sourceTree = "<group>"; };
+		D7B511C12C94419500FD3D6E /* RecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				D74CC7CC2C92C1FE0059FE5D /* RecipesViewModel.swift */,
+				D7B511C12C94419500FD3D6E /* RecipeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -93,7 +98,8 @@
 		D74CC7C72C9270810059FE5D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D74CC7D12C92D2100059FE5D /* Recipe.swift */,
+				D74CC7D12C92D2100059FE5D /* ShortRecipe.swift */,
+				D7B511BF2C94358900FD3D6E /* FullRecipe.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -280,8 +286,10 @@
 				D74CC7CD2C92C1FE0059FE5D /* RecipesViewModel.swift in Sources */,
 				D74CC7C92C92C0BC0059FE5D /* RecipesView.swift in Sources */,
 				D74CC7D02C92D1EF0059FE5D /* NetworkService.swift in Sources */,
+				D7B511C22C94419500FD3D6E /* RecipeViewModel.swift in Sources */,
+				D7B511C02C94358900FD3D6E /* FullRecipe.swift in Sources */,
 				D7B4232A2C925EC800E3107E /* fetch_ios_challengeApp.swift in Sources */,
-				D74CC7D22C92D2100059FE5D /* Recipe.swift in Sources */,
+				D74CC7D22C92D2100059FE5D /* ShortRecipe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

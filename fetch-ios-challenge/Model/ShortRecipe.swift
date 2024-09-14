@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Recipe: Codable, Identifiable {
+struct ShortRecipe: Codable, Identifiable {
     let name: String
     let thumbnailURL: String
     let id: String

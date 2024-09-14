@@ -15,7 +15,7 @@ struct RecipesView: View {
             if self.recipesVM.networkError != nil {
                 Text("There was an error fetching Recipes! Please try again!")
             } else {
-                RecipesListView(meals: self.recipesVM.dessertRecipes)
+                RecipesListView(shortRecipes: self.recipesVM.dessertRecipes)
             }
             
             Spacer()
@@ -32,12 +32,12 @@ struct RecipesView: View {
     }
     
     private struct RecipesListView: View {
-        let meals: [Recipe]
+        let shortRecipes: [ShortRecipe]
         
         var body: some View {
             List {
-                ForEach(self.meals) { meal in
-                    NavigationLink(destination: RecipeView()) {
+                ForEach(self.shortRecipes) { meal in
+                    NavigationLink(destination: RecipeView(recipeVM: RecipeViewModel(recipeID: meal.id))) {
                         HStack {
                             AsyncImage(url: URL(string: meal.thumbnailURL)) { image in
                                 image
