@@ -8,9 +8,9 @@
 import Foundation
 
 struct ShortRecipe: Codable, Identifiable {
-    let name: String
-    let thumbnailURL: String
-    let id: String
+    let name: String?
+    let thumbnailURL: String?
+    let id: String?
     
     enum CodingKeys: String, CodingKey {
         case name = "strMeal"

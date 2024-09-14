@@ -25,29 +25,35 @@ struct RecipeView: View {
             Text("There was an error fetching the recipe.")
                 .foregroundColor(.red)
         } else if let fullRecipe = self.recipeVM.fullRecipe {
-            RecipeCardView(fullRecipe: fullRecipe)
+            FullRecipeView(fullRecipe: fullRecipe)
         } else {
             ProgressView()
         }
     }
     
-    private struct RecipeCardView: View {
+    private struct FullRecipeView: View {
         let fullRecipe: FullRecipe
         
         var body: some View {
-            ScrollView {
-                VStack {
-                    Text(self.fullRecipe.recipeName ?? "This recipe has no name")
-                        .font(.title)
-                        .padding(.bottom)
-                    
-                    Text(self.fullRecipe.recipeInstructions ?? "This recipe has no associated instructions")
-                        .font(.subheadline)
-                    
-                    Spacer()
-                        .frame(height: 20)
-                    
-                    if self.fullRecipe.ingredients.count > 0 {
+            if let recipeName = self.fullRecipe.recipeName,
+               !recipeName.isEmpty,
+               let recipeInstructions = self.fullRecipe.recipeInstructions,
+               !recipeInstructions.isEmpty,
+               !self.fullRecipe.ingredients.isEmpty {
+                
+                ScrollView {
+                    VStack {
+                        Text(recipeName)
+                            .font(.title)
+                            .padding(.bottom)
+                        
+                        Text(recipeInstructions)
+                            .font(.subheadline)
+                        
+                        Spacer()
+                            .frame(height: 20)
+                        
+                        
                         Text("Ingredients")
                             .font(.headline)
                         
@@ -62,11 +68,11 @@ struct RecipeView: View {
                                 }
                             }
                         }
-                    } else {
-                        Text("This recipe has no associated ingredients")
                     }
+                    .padding()
                 }
-                .padding()
+            } else {
+                Text("This recipe is missing some elements. Please pick another one.")
             }
         }
     }

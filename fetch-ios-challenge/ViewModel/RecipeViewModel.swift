@@ -22,12 +22,11 @@ class RecipeViewModel {
     func fetchRecipe() {
         Task {
             do {
-                print(self.recipeID)
                 let fullRecipe = try await self.networkService.fetchRecipe(recipeID: self.recipeID)
                 self.fullRecipe = fullRecipe
                 self.networkError = nil
             } catch {
-                print(error)
+                self.fullRecipe =  nil
                 self.networkError = error
             }
         }

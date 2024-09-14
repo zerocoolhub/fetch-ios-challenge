@@ -25,11 +25,15 @@ struct RecipesView: View {
     
     @ViewBuilder
     private var content: some View {
-        if let _ = recipesVM.networkError {
+        if let _ = self.recipesVM.networkError {
             Text("There was an error fetching Recipes! Please try again!")
                 .foregroundColor(.red)
-        } else if let dessertRecipes = recipesVM.dessertRecipes {
-            RecipesListView(shortRecipes: dessertRecipes)
+        } else if let dessertRecipes = self.recipesVM.dessertRecipes {
+            if dessertRecipes.isEmpty {
+                Text("No Recipes available")
+            } else {
+                RecipesListView(shortRecipes: dessertRecipes)
+            }
         } else {
             Text("Tap \"Fetch Recipes\" to fetch recipes")
         }
@@ -40,22 +44,36 @@ struct RecipesView: View {
         
         var body: some View {
             List {
-                ForEach(self.shortRecipes) { meal in
-                    NavigationLink(destination: RecipeView(recipeVM: RecipeViewModel(recipeID: meal.id))) {
-                        HStack {
-                            AsyncImage(url: URL(string: meal.thumbnailURL)) { image in
-                                image
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 50, height: 50)
-                                    .cornerRadius(8)
-                            } placeholder: {
-                                ProgressView()
-                                    .frame(width: 50, height: 50)
+                ForEach(self.shortRecipes) { recipe in
+                    if let recipeID = recipe.id,
+                       let recipeName = recipe.name,
+                       !recipeID.isEmpty,
+                       !recipeName.isEmpty {
+                        NavigationLink(destination: RecipeView(recipeVM: RecipeViewModel(recipeID: recipeID))) {
+                            HStack {
+                                if let thumbnailURL = recipe.thumbnailURL, let url = URL(string: thumbnailURL) {
+                                    AsyncImage(url: url) { image in
+                                        image
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(width: 50, height: 50)
+                                            .cornerRadius(8)
+                                    } placeholder: {
+                                        ProgressView()
+                                            .frame(width: 50, height: 50)
+                                    }
+                                } else {
+                                    Image(systemName: "photo")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 50, height: 50)
+                                        .cornerRadius(8)
+                                        .foregroundStyle(.gray)
+                                }
+                                
+                                Text(recipeName)
+                                    .font(.headline)
                             }
-                            
-                            Text(meal.name)
-                                .font(.headline)
                         }
                     }
                 }
