@@ -41,18 +41,18 @@ struct RecipeView: View {
                     Spacer()
                         .frame(height: 20)
                     
-                    if self.fullRecipe.ingredientMeasures.count > 0 {
+                    if self.fullRecipe.ingredients.count > 0 {
                         Text("Ingredients")
                             .font(.headline)
                         
                         LazyVStack(alignment: .leading, spacing: 10) {
-                            ForEach(self.fullRecipe.ingredientMeasures) { ingredientMeasure in
+                            ForEach(self.fullRecipe.ingredients) { ingredients in
                                 HStack  {
-                                    Text(ingredientMeasure.ingredient)
+                                    Text(ingredients.ingredient)
                                     
                                     Spacer()
                                     
-                                    Text(ingredientMeasure.measure)
+                                    Text(ingredients.measure)
                                 }
                             }
                         }

@@ -8,7 +8,7 @@
 import Foundation
 
 struct FullRecipe: Codable {
-    struct IngredientMeasure: Identifiable {
+    struct Ingredient: Identifiable {
         let id: String
         let ingredient: String
         let measure: String
@@ -22,15 +22,15 @@ struct FullRecipe: Codable {
     
     private let rawDict: [String: String?]
     
-    var ingredientMeasures: [IngredientMeasure] {
-        var result: [IngredientMeasure] = []
+    var ingredients: [Ingredient] {
+        var result: [Ingredient] = []
         for i in 1... {
             guard let ingredient = rawDict["strIngredient\(i)"] ?? nil,
                   let measure = rawDict["strMeasure\(i)"] ?? nil,
                   !ingredient.isEmpty else {
                 break
             }
-            result.append(IngredientMeasure(ingredient: ingredient, measure: measure))
+            result.append(Ingredient(ingredient: ingredient, measure: measure))
         }
         return result
     }
