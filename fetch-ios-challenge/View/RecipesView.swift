@@ -11,23 +11,27 @@ struct RecipesView: View {
     @State private var recipesVM = RecipesViewModel()
     
     var body: some View {
-        VStack {
-            if self.recipesVM.networkError != nil {
-                Text("There was an error fetching Recipes! Please try again!")
-            } else {
-                RecipesListView(shortRecipes: self.recipesVM.dessertRecipes)
-            }
-            
-            Spacer()
-        }
-        .navigationTitle("Recipes")
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button("Fetch Recipes") {
-                    self.fetchRecipesButtonPressed()
+        self.content
+            .navigationTitle("Recipes")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Fetch Recipes") {
+                        self.fetchRecipesButtonPressed()
+                    }
                 }
             }
+    }
+    
+    @ViewBuilder
+    private var content: some View {
+        if let _ = recipesVM.networkError {
+            Text("There was an error fetching Recipes! Please try again!")
+                .foregroundColor(.red)
+        } else if let dessertRecipes = recipesVM.dessertRecipes {
+            RecipesListView(shortRecipes: dessertRecipes)
+        } else {
+            Text("Tap \"Fetch Recipes\" to fetch recipes")
         }
     }
     

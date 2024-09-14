@@ -11,17 +11,23 @@ struct RecipeView: View {
     @State var recipeVM: RecipeViewModel
     
     var body: some View {
-        VStack {
-            if  self.recipeVM.networkError != nil {
-                Text("There was an error fetching the recipe.")
-            } else if let fullRecipe = self.recipeVM.fullRecipe {
-                RecipeCardView(fullRecipe: fullRecipe)
+        self.content
+            .navigationTitle("Recipe")
+            .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                self.recipeVM.fetchRecipe()
             }
-        }
-        .navigationTitle("Recipe")
-        .navigationBarTitleDisplayMode(.inline)
-        .onAppear {
-            self.recipeVM.fetchRecipe()
+    }
+    
+    @ViewBuilder
+    private var content: some View {
+        if let _ = self.recipeVM.networkError {
+            Text("There was an error fetching the recipe.")
+                .foregroundColor(.red)
+        } else if let fullRecipe = self.recipeVM.fullRecipe {
+            RecipeCardView(fullRecipe: fullRecipe)
+        } else {
+            ProgressView()
         }
     }
     
